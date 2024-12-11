@@ -1,6 +1,6 @@
 
 build:
-	docker build . -t debsmalheiro/php:7.4.33-oci-apache
+	docker build . -t odaias/php:7.2.34-oci-apache
 
 push:
-	docker push debsmalheiro/php:7.4.33-oci-apache
+	docker push odaias/php:7.2.34-oci-apache

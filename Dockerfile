@@ -7,10 +7,10 @@ LABEL maintainer="Odaías Fellipe <odaiasfellipe@gmail.com>" \
   org.label-schema.vcs-url="https://github.com/OdaiasFellipe/php"
 
 RUN apt update -yqqq 2>/dev/null
-RUN apt install -yqqq unzip git 2>/dev/null
+RUN apt install -yqqq unzip git libpcre3-dev 2>/dev/null
 
+# Baixando o script de instalação das extensões PHP
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
 RUN chmod +x /usr/local/bin/install-php-extensions
 
 # Set correct environment variables
@@ -25,11 +25,13 @@ USER root
 
 WORKDIR /tmp
 
-ADD install_extensions /tmp/install_extensions
-ADD extensions /tmp/extensions
+# Copiar o script de extensões
+COPY install_extensions /tmp/install_extensions
+COPY extensions /tmp/extensions
 RUN chmod +x /tmp/install_extensions
 
-RUN /tmp/install_extensions 7.2
+# Instalar extensões PHP (Xdebug versão 2.9.8)
+RUN /usr/local/bin/install-php-extensions xdebug-2.9.8
 
 # xdebug coverage mode
 RUN echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

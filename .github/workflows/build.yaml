@@ -21,4 +21,4 @@ jobs:
         with:
           push: true
           context: .
-          tags: ${{ secrets.DOCKER_USERNAME }}/php:7.4.33-oci-apache   
+          tags: ${{ secrets.DOCKER_USERNAME }}/php:7.2.34-oci-apache   
