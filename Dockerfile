@@ -1,10 +1,10 @@
-FROM php:7.4-apache
+FROM php:7.2-apache
 
-LABEL maintainer="Déborah Malheiro <malheirodev@gmail.com>" \
-  org.label-schema.name="debsmalheiro/php" \
+LABEL maintainer="Odaías Fellipe <odaiasfellipe@gmail.com>" \
+  org.label-schema.name="odaias/php" \
   org.label-schema.description="Docker images for PHP" \
   org.label-schema.schema-version="1.0" \
-  org.label-schema.vcs-url="https://github.com/debsmalheiro/php"
+  org.label-schema.vcs-url="https://github.com/OdaiasFellipe/php"
 
 RUN apt update -yqqq 2>/dev/null
 RUN apt install -yqqq unzip git 2>/dev/null
@@ -29,7 +29,7 @@ ADD install_extensions /tmp/install_extensions
 ADD extensions /tmp/extensions
 RUN chmod +x /tmp/install_extensions
 
-RUN /tmp/install_extensions 7.4
+RUN /tmp/install_extensions 7.2
 
 # xdebug coverage mode
 RUN echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
